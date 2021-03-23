@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% include 'include/header.html' %}
+    {% if group %}
+        <h1 style="text-align: center">Группа: {{ group.title }}</h1>
+        <p style="text-align: center">Описание: {{ group.description }}</p>
+        <h3 style="text-align: center">Все посты группы {{ group }}</h3>
+    {% endif %}
+    {% for post in posts %}
+        <div style="padding: 0 300px">
+            <h1>{{ post.title }} </h1>
+            <p>{{ post.text }}</p>
+                <div style="display: flex">
+                    <p style="margin-right: 20px">{{ post.author }}</p>
+                    <p>{{ post.published_date }}</p>
+                </div>
+        </div>
+    {% endfor %}
+
+</body>
+</html>

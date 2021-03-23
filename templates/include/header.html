@@ -1,0 +1,25 @@
+{% load header %}
+{% header as groups %}
+<div style="display: flex; justify-content: space-between">
+    <div style="display: flex; justify-content: flex-start">
+        <p style="margin: 0 15px"><a href='{% url 'main_page' %}?count=5'>Главная</a></p>
+        <p style="margin: 0 15px"><a href="/create_post/">Создать пост</a></p>
+        {% if user.is_authenticated %}
+            <p style="margin: 0 15px"><a href="{% url 'user_posts' user.username %}">Ваши посты</a></p>
+            <p style="margin: 0 15px"><a href="/">Выйти</a></p>
+        {% else %}
+            <p style="margin: 0 15px"><a href="/">Войти</a></p>
+        {% endif %}
+    </div>
+    <div style="display: flex; justify-content: flex-end">
+        <p style="margin: 0">Ваши группы (для своего удобства перехода):</p>
+        {% if groups %}
+            {% for group in groups %}
+                <p style="margin: 0 15px"><a href="{% url "group" group.slug %}">{{ group.title }}</a></p>
+            {% endfor %}
+        {% else %}
+            <p>Нет групп</p>
+        {% endif %}
+    </div>
+</div>
+<hr>
